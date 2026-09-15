@@ -16,8 +16,7 @@ public class User {
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
-    private User() {
-
+    public User() {
     }
 
     public User(String email, String passwordHash) {
@@ -26,7 +25,7 @@ public class User {
     }
 
     public Long getId() {
-            return id;
+        return id;
     }
 
     public String getEmail() {
