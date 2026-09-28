@@ -16,6 +16,9 @@ public class TransactionRequest {
     @Positive
     private BigDecimal amount;
 
+    @NotNull
+    private Long categoryId;
+
     private String description;
 
     @NotNull
@@ -35,5 +38,9 @@ public class TransactionRequest {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
     }
 }
