@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import com.financetracker.backend.category.Category;
 
 @Entity
 @Table(name = "transactions")
@@ -29,6 +30,10 @@ public class Transaction {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public Transaction() {
     }
 
@@ -37,13 +42,15 @@ public class Transaction {
             BigDecimal amount,
             String description,
             LocalDate date,
-            User user) {
+            User user,
+            Category category) {
 
         this.type = type;
         this.amount = amount;
         this.description = description;
         this.date = date;
         this.user = user;
+        this.category = category;
     }
 
     public Long getId() {
@@ -68,5 +75,9 @@ public class Transaction {
 
     public User getUser() {
         return user;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 }

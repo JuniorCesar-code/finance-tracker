@@ -1,5 +1,6 @@
 package com.financetracker.backend.transaction;
-
+import com.financetracker.backend.category.Category;
+import com.financetracker.backend.category.CategoryRepository;
 import com.financetracker.backend.user.User;
 import com.financetracker.backend.user.UserRepository;
 import org.springframework.stereotype.Service;
@@ -11,13 +12,16 @@ public class TransactionService {
 
     private final TransactionRepository transactionRepository;
     private final UserRepository userRepository;
+    private final CategoryRepository categoryRepository;
 
     public TransactionService(
             TransactionRepository transactionRepository,
-            UserRepository userRepository) {
+            UserRepository userRepository,
+            CategoryRepository categoryRepository) {
 
         this.transactionRepository = transactionRepository;
         this.userRepository = userRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public Transaction createTransaction(
@@ -26,15 +30,18 @@ public class TransactionService {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+        Category category = categoryRepository
+                .findById(request.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("Category not found"));
 
         Transaction transaction = new Transaction(
                 request.getType(),
                 request.getAmount(),
                 request.getDescription(),
                 request.getDate(),
-                user
+                user,
+                category
         );
-
         return transactionRepository.save(transaction);
     }
 
