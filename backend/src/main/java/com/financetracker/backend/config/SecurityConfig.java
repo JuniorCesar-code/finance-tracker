@@ -57,31 +57,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
-        );
-
-        configuration.setAllowedMethods(
-                List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
-        );
-
-        configuration.setAllowedHeaders(
-                List.of("Authorization", "Content-Type")
-        );
-
-        CorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
-
-        ((UrlBasedCorsConfigurationSource) source)
-                .registerCorsConfiguration("/**", configuration);
-
-        return source;
-    }
 
     @Bean
     public JwtDecoder jwtDecoder(
