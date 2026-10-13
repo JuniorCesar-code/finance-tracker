@@ -1,0 +1,24 @@
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Frontend
+**/node_modules/
+**/dist/
+**/coverage/
+
+# Backend
+**/target/
+
+# Local logs
+*.log
+
+# Operating system
+.DS_Store
+Thumbs.db
