@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { API_URL } from '../config/api'
+
 
 function RegisterForm() {
     const [email, setEmail] = useState('')
@@ -8,7 +10,7 @@ function RegisterForm() {
         event.preventDefault()
 
         try {
-            const response = await fetch('http://localhost:8080/auth/register', {
+            const response = await fetch(`${API_URL}/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

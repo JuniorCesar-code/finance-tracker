@@ -5,6 +5,7 @@ import RegisterForm from './components/RegisterForm'
 import TransactionForm from './components/TransactionForm'
 import TransactionList from './components/TransactionList'
 import Dashboard from './components/Dashboard'
+import { API_URL } from './config/api'
 
 import {
     getTransactions,
@@ -63,7 +64,7 @@ function App() {
 
         try {
             const response = await fetch(
-                'http://localhost:8080/auth/login',
+                `${API_URL}/auth/login`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

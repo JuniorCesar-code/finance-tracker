@@ -1,3 +1,4 @@
+import { API_URL } from '../config/api'
 
 export async function getCategories() {
     const token = localStorage.getItem('token')
@@ -6,7 +7,7 @@ export async function getCategories() {
         throw new Error('Please log in first.')
     }
 
-    const response = await fetch('http://localhost:8080/categories', {
+    const response = await fetch(`${API_URL}/categories`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
